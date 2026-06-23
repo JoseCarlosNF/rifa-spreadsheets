@@ -16,32 +16,32 @@ export default {
   ],
   computed: {
     checked: {
-      get () {
+      get() {
         return this.modelValue
       },
-      set (value) {
+      set(value) {
         this.$emit('update:modelValue', value)
       }
     },
-    status () {
+    status() {
       const status = this.ticketsStatus[this.ticketNumber]
       if (!status) {
         return DISPONIVEL
       }
       return status
     },
-    statusTitle () {
+    statusTitle() {
       return TICKET_STATUS_TITLE_MAP[this.status]
     },
-    statusClass () {
+    statusClass() {
       if (this.status === EM_ABERTO) return 'not-paid'
       if (this.status === PAGO) return 'paid'
       return 'available'
     },
-    checkedClass () {
+    checkedClass() {
       return this.checked.includes(this.value) ? 'checked' : ''
     },
-    disabled () {
+    disabled() {
       return this.status !== DISPONIVEL
     }
   },
@@ -52,10 +52,10 @@ export default {
         :disabled="disabled"
         v-model="checked"
         :value="value" />
-      <span class="text-xs font-bold leading-none">{{ ticketNumber }}</span>
+      <span class="text-xxs leading-none">{{ ticketNumber }}</span>
       <span
         v-if="statusTitle"
-        class="text-[8px] font-medium opacity-70 leading-none mt-0.5">{{ statusTitle }}</span>
+        class="text-xs font-medium opacity-70 leading-none mt-0.5">{{ statusTitle }}</span>
     </label>
   `
 }
