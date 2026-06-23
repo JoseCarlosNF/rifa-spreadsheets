@@ -26,11 +26,12 @@ export default {
         email: this.requiredParams.includes('email') ? this.email : undefined
       }
       if (this.data.config.payment.key === 'bc') {
+        const totalPrice = Number(ticketNumbers.length * this.data.config.ticketPrice)
         const { pixURL, pixQrCode } = await pixBuilder(
           this.data.config.pixKey,
           this.data.config.pixKeyOwnerName,
           this.data.config.pixKeyOwnerCity,
-          this.data.config.ticketPrice,
+          totalPrice,
           this.pixMessage
         )
         this.pixURL = pixURL
