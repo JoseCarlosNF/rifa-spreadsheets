@@ -81,14 +81,13 @@ export default {
           </h1>
 
           <!-- Price badge -->
-          <div class="inline-flex items-baseline gap-1 px-5 py-2.5 rounded-xl bg-gradient-to-r from-fire-600 to-fire-700 shadow-lg shadow-fire-900/50">
-            <span class="text-fire-200 text-xs font-medium">Bilhete por</span>
-            <span class="text-white text-2xl font-black">R$\{{ rifa.config.ticketPrice }}</span>
+          <div class="flex flex-col items-center gap-6">
+            <span class="text-white text-sm"> {{ rifa.config.description }} </span>
+            <div class="inline-flex items-center gap-1 px-5 py-2.5 rounded-xl bg-gradient-to-r from-fire-600 to-fire-700 shadow-lg shadow-fire-900/50">
+              <span class="text-fire-200 text-xs font-medium">Bilhete por</span>
+              <span class="text-white text-2xl font-black">R$\{{ rifa.config.ticketPrice }}</span>
+            </div>
           </div>
-
-          <p class="text-gray-300 text-sm leading-relaxed max-w-sm">
-            {{ rifa.config.description }}
-          </p>
         </div>
       </div>
 
@@ -132,7 +131,7 @@ export default {
 
       <!-- Ticket grid -->
       <div class="px-4 pb-32 max-w-lg mx-auto w-full flex-1">
-        <div class="grid grid-cols-5 sm:grid-cols-6 gap-1.5">
+        <div class="grid grid-cols-4 gap-1.5">
           <ticket
             v-for="ticketNumber in new Array(rifa.config.ticketTotal).fill().map((_, i) => i+1)"
             :key="ticketNumber"

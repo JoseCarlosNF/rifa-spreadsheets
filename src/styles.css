@@ -99,8 +99,7 @@
 /* ── Ticket status classes (used by Vue components) ── */
 @layer components {
   .ticket {
-    @apply relative flex flex-col items-center justify-center rounded-lg cursor-pointer select-none transition-all duration-200 ease-out border-2 border-transparent min-w-0;
-    padding: 0.5rem 0.25rem;
+    @apply relative flex flex-col items-center justify-center rounded-lg cursor-pointer select-none transition-all duration-200 ease-out border-2 border-transparent min-w-0 aspect-square p-1;
   }
 
   .ticket.available {
