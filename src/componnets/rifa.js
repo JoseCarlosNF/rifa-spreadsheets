@@ -71,7 +71,7 @@ export default {
             :src="heroImage"
             alt="Bombeiro Militar"
             class="w-full h-full object-cover object-top transform scale-150 origin-[center_25%]" />
-          <div class="absolute inset-0 bg-gradient-to-b from-dark-950/20 via-dark-950/60 to-dark-950"></div>
+          <div class="absolute inset-0 hero-vignette"></div>
         </div>
 
         <!-- Hero content -->

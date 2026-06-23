@@ -113,6 +113,17 @@
   .glass-dark {
     @apply bg-dark-900/70 backdrop-blur-xl border border-white/5 rounded-2xl;
   }
+
+  /* Vignette effect to blend hero images seamlessly */
+  .hero-vignette {
+    background: radial-gradient(
+      ellipse at 50% 30%,
+      rgba(3, 7, 18, 0.1) 0%,
+      rgba(3, 7, 18, 0.4) 40%,
+      rgba(3, 7, 18, 0.85) 75%,
+      rgba(3, 7, 18, 1) 100%
+    );
+  }
 }
 
 /* ── Scrollbar styling ── */
