@@ -70,12 +70,12 @@ export default {
           <img
             :src="heroImage"
             alt="Bombeiro Militar"
-            class="w-full h-full object-cover object-top transform scale-150 origin-top" />
+            class="w-full h-full object-cover object-top transform scale-150 origin-[center_25%]" />
           <div class="absolute inset-0 bg-gradient-to-b from-dark-950/20 via-dark-950/60 to-dark-950"></div>
         </div>
 
         <!-- Hero content -->
-        <div class="relative z-10 px-4 pt-52 sm:pt-60 pb-8 max-w-lg mx-auto text-center">
+        <div class="relative z-10 px-4 pt-6 pb-48 sm:pt-8 sm:pb-56 max-w-lg mx-auto text-center">
           <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-fire-600/30 border border-fire-500/30 text-fire-300 text-xs font-semibold tracking-wide mb-4">
             🔥 RIFA BENEFICENTE
           </div>
