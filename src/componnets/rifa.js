@@ -64,7 +64,7 @@ export default {
       class="min-h-dvh flex flex-col">
 
       <!-- Hero Section -->
-      <div class="relative overflow-hidden">
+      <div class="relative overflow-hidden w-full aspect-square max-w-lg mx-auto">
         <!-- Background image -->
         <div class="absolute inset-0">
           <img
@@ -75,19 +75,20 @@ export default {
         </div>
 
         <!-- Hero content -->
-        <div class="relative z-10 px-4 pt-6 pb-12 sm:pt-8 sm:pb-16 max-w-lg mx-auto text-center flex flex-col items-center">
-          <h1 class="text-2xl sm:text-3xl font-black text-white leading-tight mb-3">
+        <div class="absolute inset-0 z-10 px-4 pt-6 pb-8 text-center flex flex-col justify-between items-center">
+          <h1 class="text-2xl sm:text-3xl font-black text-white leading-tight">
             {{ rifa.config.title }}
           </h1>
-          <p class="text-gray-300 text-sm leading-relaxed mb-5">
-            {{ rifa.config.description }}
-          </p>
 
           <!-- Price badge -->
-          <div class="inline-flex items-baseline gap-1 px-5 py-2.5 rounded-xl bg-gradient-to-r from-fire-600 to-fire-700 shadow-lg shadow-fire-900/50 mt-28 sm:mt-36">
+          <div class="inline-flex items-baseline gap-1 px-5 py-2.5 rounded-xl bg-gradient-to-r from-fire-600 to-fire-700 shadow-lg shadow-fire-900/50">
             <span class="text-fire-200 text-xs font-medium">Bilhete por</span>
             <span class="text-white text-2xl font-black">R$\{{ rifa.config.ticketPrice }}</span>
           </div>
+
+          <p class="text-gray-300 text-sm leading-relaxed max-w-sm">
+            {{ rifa.config.description }}
+          </p>
         </div>
       </div>
 
