@@ -1,7 +1,7 @@
 import heroImage from '../assets/hero-bombeiro.jpg'
 
 export default {
-  data () {
+  data() {
     return {
       rifa: null,
       reloading: false,
@@ -11,25 +11,25 @@ export default {
     }
   },
   methods: {
-    async reloadRifa () {
+    async reloadRifa() {
       this.reloading = true
       this.rifa = await this.$rifa.retrieve()
       this.reloading = false
     },
-    pay () {
+    pay() {
       this.payData = {
         ticketNumbers: this.ticketNumbers,
         config: this.rifa.config
       }
       this.ticketNumbers = []
     },
-    async payFinished () {
+    async payFinished() {
       this.payData = null
       await this.reloadRifa()
     }
   },
   computed: {
-    stats () {
+    stats() {
       if (!this.rifa) return {}
       const total = this.rifa.config.ticketTotal
       const statusEntries = Object.values(this.rifa.ticketsStatus)
@@ -39,7 +39,7 @@ export default {
       return { total, sold, pending, available }
     }
   },
-  async mounted () {
+  async mounted() {
     this.rifa = await this.$rifa.retrieve()
   },
   template: `
@@ -75,10 +75,7 @@ export default {
         </div>
 
         <!-- Hero content -->
-        <div class="relative z-10 px-4 pt-6 pb-48 sm:pt-8 sm:pb-56 max-w-lg mx-auto text-center">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-fire-600/30 border border-fire-500/30 text-fire-300 text-xs font-semibold tracking-wide mb-4">
-            🔥 RIFA BENEFICENTE
-          </div>
+        <div class="relative z-10 px-4 pt-6 pb-12 sm:pt-8 sm:pb-16 max-w-lg mx-auto text-center flex flex-col items-center">
           <h1 class="text-2xl sm:text-3xl font-black text-white leading-tight mb-3">
             {{ rifa.config.title }}
           </h1>
@@ -87,7 +84,7 @@ export default {
           </p>
 
           <!-- Price badge -->
-          <div class="inline-flex items-baseline gap-1 px-5 py-2.5 rounded-xl bg-gradient-to-r from-fire-600 to-fire-700 shadow-lg shadow-fire-900/50">
+          <div class="inline-flex items-baseline gap-1 px-5 py-2.5 rounded-xl bg-gradient-to-r from-fire-600 to-fire-700 shadow-lg shadow-fire-900/50 mt-28 sm:mt-36">
             <span class="text-fire-200 text-xs font-medium">Bilhete por</span>
             <span class="text-white text-2xl font-black">R$\{{ rifa.config.ticketPrice }}</span>
           </div>
