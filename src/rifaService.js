@@ -10,15 +10,28 @@ class Rifa {
     return response.data
   }
 
-  async register ({ ticketNumbers, name, phoneNumber, email }) {
-    const params = new URLSearchParams(ticketNumbers.map((tn) => (['ticketNumber', tn])))
-    params.set('name', name)
-    params.set('phoneNumber', phoneNumber)
-    if (email) {
-      params.set('email', email)
+  async register ({ ticketNumbers, name, phoneNumber }) {
+    const formData = new URLSearchParams();
+    formData.append('name', name);
+    formData.append('phoneNumber', phoneNumber);
+
+    // Para arrays (ticketNumbers), o Apps Script requer que você envie
+    // o mesmo parâmetro múltiplas vezes para cair no `request.parameters`
+    ticketNumbers.forEach(num => {
+        formData.append('ticketNumber', num);
+    });
+
+    try {
+      const response = await axios.post(this.url, formData, {
+        headers: {
+          // 2. Força o cabeçalho de formulário (é uma "Requisição Simples", não gera erro de CORS!)
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error(error);
     }
-    const response = await axios.post(`${this.url}?${params.toString()}`)
-    return response.data
   }
 }
 
