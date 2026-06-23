@@ -1,15 +1,10 @@
 const EM_ABERTO = 'EM ABERTO'
 const DISPONIVEL = 'DISPONIVEL'
 const PAGO = 'PAGO'
-const TICKET_CLASS_MAP = {
-  [EM_ABERTO]: 'not-paid',
-  [PAGO]: 'paid',
-  [DISPONIVEL]: 'available'
-}
 const TICKET_STATUS_TITLE_MAP = {
-  [EM_ABERTO]: 'Aguardando',
+  [EM_ABERTO]: 'Reservado',
   [PAGO]: 'Pago',
-  [DISPONIVEL]: 'Disponível'
+  [DISPONIVEL]: ''
 }
 
 export default {
@@ -39,10 +34,12 @@ export default {
       return TICKET_STATUS_TITLE_MAP[this.status]
     },
     statusClass () {
-      return TICKET_CLASS_MAP[this.status]
+      if (this.status === EM_ABERTO) return 'not-paid'
+      if (this.status === PAGO) return 'paid'
+      return 'available'
     },
     checkedClass () {
-      return this.checked.includes(this.value) ? 'checked' : 'non-checked'
+      return this.checked.includes(this.value) ? 'checked' : ''
     },
     disabled () {
       return this.status !== DISPONIVEL
@@ -55,8 +52,10 @@ export default {
         :disabled="disabled"
         v-model="checked"
         :value="value" />
-      <div>Nº{{ ticketNumber }}</div>
-      <div><strong>{{ statusTitle }}</strong></div>
+      <span class="text-xs font-bold leading-none">{{ ticketNumber }}</span>
+      <span
+        v-if="statusTitle"
+        class="text-[8px] font-medium opacity-70 leading-none mt-0.5">{{ statusTitle }}</span>
     </label>
   `
 }
