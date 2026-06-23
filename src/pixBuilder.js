@@ -6,7 +6,7 @@ export default async (pixKey, pixKeyOwnerName, pixKeyOwnerCity, ticketPrice, mes
     pixKeyOwnerName,
     pixKeyOwnerCity,
     ticketPrice.toFixed(2),
-    message.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    message.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\x00-\xFF]/g, '')
   ]
   const pixURL = await Pix(...pixArgs)
   const pixQrCode = await Pix(...pixArgs, true)
