@@ -43,18 +43,39 @@
 }
 
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(100%); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(251, 191, 36, 0.4); }
-  50% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.7); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.7);
+  }
 }
 
 /* ── Base reset ── */
@@ -68,7 +89,9 @@
     min-height: 100dvh;
   }
 
-  input, button, textarea {
+  input,
+  button,
+  textarea {
     @apply font-sans;
   }
 }
@@ -76,17 +99,12 @@
 /* ── Ticket status classes (used by Vue components) ── */
 @layer components {
   .ticket {
-    @apply relative flex flex-col items-center justify-center
-           rounded-lg cursor-pointer select-none
-           transition-all duration-200 ease-out
-           border-2 border-transparent
-           min-w-0;
+    @apply relative flex flex-col items-center justify-center rounded-lg cursor-pointer select-none transition-all duration-200 ease-out border-2 border-transparent min-w-0;
     padding: 0.5rem 0.25rem;
   }
 
   .ticket.available {
-    @apply bg-dark-800/80 text-gray-300 hover:bg-dark-700/90
-           hover:border-fire-500/30;
+    @apply bg-dark-800/80 text-gray-300 hover:bg-dark-700/90 hover:border-fire-500/30;
   }
 
   .ticket.not-paid {
@@ -98,10 +116,11 @@
   }
 
   .ticket.checked {
-    @apply border-gold-400 bg-fire-600/30 text-white shadow-[0_0_12px_rgba(251,191,36,0.35)];
+    @apply border-gold-400 bg-fire-600/30 text-white;
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.35);
   }
 
-  .ticket > input {
+  .ticket>input {
     @apply hidden;
   }
 
@@ -118,9 +137,10 @@
   .hero-vignette {
     background: radial-gradient(
       ellipse at 50% 30%,
-      rgba(3, 7, 18, 0.1) 0%,
-      rgba(3, 7, 18, 0.4) 40%,
-      rgba(3, 7, 18, 0.85) 75%,
+      rgba(3, 7, 18, 0) 0%,
+      rgba(3, 7, 18, 0.25) 30%,
+      rgba(3, 7, 18, 0.8) 60%,
+      rgba(3, 7, 18, 1) 78%,
       rgba(3, 7, 18, 1) 100%
     );
   }
