@@ -105,7 +105,7 @@ export default {
           </div>
           <div class="w-px h-8 bg-white/10"></div>
           <div>
-            <div class="text-lg font-bold text-ember-400">{{ stats.sold }}</div>
+            <div class="text-lg font-bold text-grove-400">{{ stats.sold }}</div>
             <div class="text-[10px] text-gray-500 uppercase tracking-wider font-medium">Pagos</div>
           </div>
         </div>

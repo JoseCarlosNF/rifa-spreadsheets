@@ -24,6 +24,11 @@
   --color-ember-800: #991B1B;
   --color-ember-900: #7F1D1D;
 
+  --color-grove-400: #4ADE80;
+  --color-grove-500: #22C55E;
+  --color-grove-600: #16A34A;
+  --color-grove-700: #15803D;
+
   --color-gold-300: #FCD34D;
   --color-gold-400: #FBBF24;
   --color-gold-500: #F59E0B;
@@ -111,7 +116,7 @@
   }
 
   .ticket.paid {
-    @apply bg-ember-700/25 text-ember-400 cursor-not-allowed;
+    @apply bg-grove-700/25 text-grove-400 cursor-not-allowed;
   }
 
   .ticket.checked {
