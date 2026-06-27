@@ -70,7 +70,7 @@ export default {
   },
   template: `
     <!-- Modal overlay -->
-    <div class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
       <!-- Backdrop -->
       <div
         class="absolute inset-0 bg-dark-950/80 backdrop-blur-sm"
@@ -79,7 +79,7 @@ export default {
       <!-- Payment completed: PIX view -->
       <div
         v-if="payData"
-        class="relative z-10 w-full sm:max-w-md bg-dark-900 border border-white/10 rounded-t-3xl sm:rounded-2xl p-6 animate-slide-up max-h-[90dvh] overflow-y-auto">
+        class="relative z-10 w-full max-w-md bg-dark-900 border border-white/10 rounded-2xl px-4 py-5 sm:p-6 animate-slide-up max-h-[85dvh] overflow-y-auto">
 
         <div class="flex items-center justify-between mb-5">
           <h2 class="text-lg font-bold text-white">Pagamento via Pix</h2>
@@ -113,20 +113,12 @@ export default {
           :ticket-numbers="data.ticketNumbers"
           :message="data.config.whatsappMessage"
           class="mt-4" />
-
-        <!-- Finish button -->
-        <button
-          @click="finish()"
-          :disabled="registering"
-          class="w-full mt-5 py-3 rounded-xl bg-fire-600 hover:bg-fire-500 text-white font-semibold text-sm transition-colors disabled:opacity-40 cursor-pointer">
-          Finalizar
-        </button>
       </div>
 
       <!-- Registration form -->
       <form
         v-else
-        class="relative z-10 w-full sm:max-w-md bg-dark-900 border border-white/10 rounded-t-3xl sm:rounded-2xl p-6 animate-slide-up"
+        class="relative z-10 w-full max-w-md bg-dark-900 border border-white/10 rounded-2xl px-4 py-5 sm:p-6 animate-slide-up max-h-[85dvh] overflow-y-auto"
         @submit.prevent="register()">
 
         <h2 class="text-lg font-bold text-white mb-1">Finalizar compra</h2>
@@ -145,7 +137,7 @@ export default {
               type="text"
               required
               placeholder="Seu nome completo"
-              class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white text-sm placeholder:text-gray-600 focus:outline-none focus:border-fire-500 focus:ring-1 focus:ring-fire-500/50 transition-all" />
+              class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white text-base sm:text-sm placeholder:text-gray-600 focus:outline-none focus:border-fire-500 focus:ring-1 focus:ring-fire-500/50 transition-all" />
           </div>
           <div>
             <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Telefone</label>
@@ -155,7 +147,7 @@ export default {
               type="tel"
               required
               placeholder="(00) 00000-0000"
-              class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white text-sm placeholder:text-gray-600 focus:outline-none focus:border-fire-500 focus:ring-1 focus:ring-fire-500/50 transition-all" />
+              class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white text-base sm:text-sm placeholder:text-gray-600 focus:outline-none focus:border-fire-500 focus:ring-1 focus:ring-fire-500/50 transition-all" />
           </div>
           <div v-if="requiredParams.includes('email')">
             <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">E-mail</label>
@@ -164,7 +156,7 @@ export default {
               type="email"
               required
               placeholder="seu@email.com"
-              class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white text-sm placeholder:text-gray-600 focus:outline-none focus:border-fire-500 focus:ring-1 focus:ring-fire-500/50 transition-all" />
+              class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white text-base sm:text-sm placeholder:text-gray-600 focus:outline-none focus:border-fire-500 focus:ring-1 focus:ring-fire-500/50 transition-all" />
           </div>
         </div>
 

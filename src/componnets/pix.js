@@ -36,7 +36,7 @@ export default {
     <div class="flex flex-col gap-6 text-left">
 
       <!-- Main Payment Card -->
-      <div class="bg-dark-850 p-5 rounded-2xl border border-white/5 shadow-inner space-y-4">
+      <div class="bg-dark-850 p-4 sm:p-5 rounded-2xl border border-white/5 shadow-inner space-y-4">
         
         <!-- Header -->
         <div class="flex items-center gap-3 border-b border-white/5 pb-3">
@@ -52,7 +52,7 @@ export default {
         </div>
 
         <!-- Beneficiary & Value Details -->
-        <div class="bg-white/5 p-4 rounded-xl border border-white/5 space-y-2 text-xs">
+        <div class="bg-white/5 p-3.5 sm:p-4 rounded-xl border border-white/5 space-y-2 text-xs">
           <div class="flex justify-between items-center text-gray-400 border-b border-white/5 pb-2">
             <span>Valor a pagar:</span>
             <span class="font-black text-lg text-white">R$ {{ totalPrice }}</span>
@@ -68,58 +68,35 @@ export default {
         </div>
 
         <!-- Copyable Key Block -->
-        <div class="flex flex-col gap-1.5">
-          <span class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Chave Pix (Celular)</span>
-          <div class="flex items-stretch rounded-xl overflow-hidden border border-white/10 bg-dark-900 shadow-md">
-            <div class="flex-1 min-w-0 px-3 py-3 font-mono text-base font-bold text-white select-all truncate flex items-center justify-center bg-dark-950/40">
+        <div class="flex flex-col gap-2.5">
+          <span class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Chave Pix (Celular)</span>
+          <div class="flex flex-col gap-2">
+            <div class="w-full px-4 py-3.5 font-mono text-lg font-black text-white select-all text-center rounded-xl border border-white/10 bg-dark-950/60 shadow-inner">
               {{ formattedPixKey }}
             </div>
             <button
               @click="copyPix()"
               type="button"
               :class="[
-                'px-4 py-3 text-xs font-black uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center min-w-[120px] active:scale-95',
+                'w-full py-3 rounded-xl text-sm font-black uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center active:scale-[0.98] shadow-md',
                 copied
                   ? 'bg-emerald-600 text-white'
                   : 'bg-fire-600 hover:bg-fire-500 text-white'
               ]">
-              <span v-if="copied">✓ Copiado!</span>
-              <span v-else>Copiar Chave</span>
+              <span v-if="copied" class="flex items-center gap-1">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                ✓ Copiado!
+              </span>
+              <span v-else class="flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                </svg>
+                Copiar Chave Pix
+              </span>
             </button>
           </div>
-        </div>
-      </div>
-
-      <!-- Step-by-Step Instructions -->
-      <div class="bg-dark-900/50 p-5 rounded-2xl border border-white/5 space-y-3">
-        <h4 class="font-black text-xs text-gray-300 uppercase tracking-wider">Passo a Passo Simplificado:</h4>
-        <div class="space-y-3 text-xs leading-relaxed text-gray-400">
-          
-          <div class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-fire-500/10 text-fire-400 flex items-center justify-center font-bold text-xs shrink-0">1</span>
-            <p>Clique no botão laranja <strong class="text-white">"Copiar Chave"</strong> acima para copiar o telefone de pagamento.</p>
-          </div>
-
-          <div class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-fire-500/10 text-fire-400 flex items-center justify-center font-bold text-xs shrink-0">2</span>
-            <p>Abra o <strong class="text-white">aplicativo do seu banco</strong> no celular (onde você tem dinheiro).</p>
-          </div>
-
-          <div class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-fire-500/10 text-fire-400 flex items-center justify-center font-bold text-xs shrink-0">3</span>
-            <p>Acesse o menu <strong class="text-white">Pix</strong>, vá em <strong class="text-white">Transferir / Pagar</strong> e selecione o tipo de chave como <strong class="text-white">Celular</strong>.</p>
-          </div>
-
-          <div class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-fire-500/10 text-fire-400 flex items-center justify-center font-bold text-xs shrink-0">4</span>
-            <p>Cole a chave copiada e confirme se o nome do beneficiário é <strong class="text-white">{{ pixKeyOwnerName }}</strong><span v-if="pixKeyOwnerBank"> no banco <strong class="text-white">{{ pixKeyOwnerBank }}</strong></span>.</p>
-          </div>
-
-          <div class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-fire-500/10 text-fire-400 flex items-center justify-center font-bold text-xs shrink-0">5</span>
-            <p>Insira o valor de <strong class="text-white text-sm">R$ {{ totalPrice }}</strong> e confirme a transferência.</p>
-          </div>
-
         </div>
       </div>
 
