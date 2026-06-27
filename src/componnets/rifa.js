@@ -64,7 +64,7 @@ export default {
       class="min-h-dvh flex flex-col">
 
       <!-- Hero Section -->
-      <div class="relative overflow-hidden w-full aspect-square max-w-lg mx-auto">
+      <div class="relative overflow-hidden w-full aspect-square max-w-lg mx-auto rounded-b-3xl shadow-xl">
         <!-- Background image -->
         <div class="absolute inset-0">
           <img
@@ -75,18 +75,75 @@ export default {
         </div>
 
         <!-- Hero content -->
-        <div class="absolute inset-0 z-10 px-4 pt-6 pb-8 text-center flex flex-col justify-between items-center">
-          <h1 class="text-2xl sm:text-3xl font-black text-white leading-tight">
+        <div class="absolute inset-0 z-10 px-4 pt-6 pb-6 text-center flex flex-col justify-between items-center">
+          <div class="w-full">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[9px] font-black bg-fire-500/90 text-white uppercase tracking-widest mb-2 shadow-sm">Rifa Online</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-black text-white leading-tight drop-shadow-md">
             {{ rifa.config.title }}
           </h1>
+        </div>
+      </div>
 
-          <!-- Price badge -->
-          <div class="flex flex-col items-center gap-6">
-            <span class="text-white text-sm"> {{ rifa.config.description }} </span>
-            <div class="inline-flex items-center gap-1 px-5 py-2.5 rounded-xl bg-gradient-to-r from-fire-600 to-fire-700 shadow-lg shadow-fire-900/50">
-              <span class="text-fire-200 text-xs font-medium">Bilhete por</span>
-              <span class="text-white text-2xl font-black">R$\{{ rifa.config.ticketPrice }}</span>
+      <!-- Prizes & Rules Card (Below the Image) -->
+      <div class="px-4 pt-4 pb-2 max-w-lg mx-auto w-full flex flex-col gap-4 animate-fade-in">
+        <!-- Glassmorphic Card for Prizes -->
+        <div class="glass-dark border border-white/10 rounded-2xl p-5 shadow-xl backdrop-blur-md relative overflow-hidden w-full">
+          <!-- Glow Accents -->
+          <div class="absolute -top-10 -left-10 w-24 h-24 bg-fire-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="absolute -bottom-10 -right-10 w-24 h-24 bg-gold-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          
+          <!-- Subtitle -->
+          <div class="text-[10px] text-fire-400 uppercase tracking-widest font-extrabold text-center mb-3.5">
+            Premiação Oficial
+          </div>
+          
+          <!-- 3 Ganhadores Grid -->
+          <div class="grid grid-cols-3 gap-2.5">
+            <div class="flex flex-col items-center p-3 rounded-xl bg-white/5 border border-white/5 text-center transition-all hover:bg-white/10">
+              <span class="text-2xl">🥇</span>
+              <span class="text-[10px] font-bold text-gray-300 mt-1.5">1º Prêmio</span>
+              <span class="text-xs font-black text-gold-400 mt-0.5">R$ 200</span>
             </div>
+            <div class="flex flex-col items-center p-3 rounded-xl bg-white/5 border border-white/5 text-center transition-all hover:bg-white/10">
+              <span class="text-2xl">🥈</span>
+              <span class="text-[10px] font-bold text-gray-300 mt-1.5">2º Prêmio</span>
+              <span class="text-xs font-black text-gold-400 mt-0.5">R$ 200</span>
+            </div>
+            <div class="flex flex-col items-center p-3 rounded-xl bg-white/5 border border-white/5 text-center transition-all hover:bg-white/10">
+              <span class="text-2xl">🥉</span>
+              <span class="text-[10px] font-bold text-gray-300 mt-1.5">3º Prêmio</span>
+              <span class="text-xs font-black text-gold-400 mt-0.5">R$ 200</span>
+            </div>
+          </div>
+          
+          <div class="text-center mt-4 text-xs text-gray-300 font-semibold leading-relaxed">
+            🏆 Serão 3 ganhadores no total, cada um levando R$ 200!
+          </div>
+        </div>
+        
+        <!-- Info & Price Row -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
+          <!-- Quick Rules -->
+          <div class="flex flex-col gap-2 text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-fire-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              Sorteio 100% Seguro
+            </span>
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-fire-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Baixa Pix Automática
+            </span>
+          </div>
+
+          <!-- Price Badge -->
+          <div class="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl bg-gradient-to-r from-fire-600 to-fire-700 shadow-md shadow-fire-900/40 shrink-0">
+            <span class="text-fire-200 text-xs font-semibold">Valor do Bilhete</span>
+            <span class="text-white text-xl font-black">R$\{{ rifa.config.ticketPrice }}</span>
           </div>
         </div>
       </div>
