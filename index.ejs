@@ -6,6 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Rifa de Formatura de Bombeiro Militar — Concorra a prêmios em dinheiro!">
   <meta name="theme-color" content="#B91C1C">
+
+  <!-- Open Graph / Social Sharing (WhatsApp, Facebook, Telegram) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>">
+  <meta property="og:description" content="Participe da nossa Rifa Online! Concorra a prêmios em dinheiro e apoie nossa formatura. Pagamento rápido via Pix com baixa automática.">
+  <!-- O Webpack irá processar esta imagem e colocar a URL correta gerada na build -->
+  <meta property="og:image" content="<%= require('./src/assets/og-image.png') %>">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.title %>">
+  <meta name="twitter:description" content="Participe da nossa Rifa Online! Concorra a prêmios em dinheiro e apoie nossa formatura. Pagamento rápido via Pix com baixa automática.">
+  <meta name="twitter:image" content="<%= require('./src/assets/og-image.png') %>">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
