@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     pixMessage () {
-      return `${this.data.config.title} bilhetes: ${this.payData.ticketNumbers}`
+      return `${this.data.config.title} bilhetes: ${this.data.ticketNumbers}`
     },
     ticketNumbersVerbose () {
       return verboseTicketNumbers(this.data.ticketNumbers)
@@ -110,7 +110,7 @@ export default {
         <whatsapp-notify
           v-if="data.config.whatsapp && !registering"
           :phone-number="data.config.whatsapp"
-          :ticket-numbers="payData.ticketNumbers"
+          :ticket-numbers="data.ticketNumbers"
           :message="data.config.whatsappMessage"
           class="mt-4" />
 

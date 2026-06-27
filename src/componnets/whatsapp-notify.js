@@ -11,7 +11,13 @@ export default {
   computed: {
     uri () {
       const params = new URLSearchParams()
-      const text = (this.message || DEFAULT_MESSAGE).replaceAll('[ticketNumbers]', verboseTicketNumbers(this.ticketNumbers))
+      const verbose = verboseTicketNumbers(this.ticketNumbers)
+      let text = this.message || DEFAULT_MESSAGE
+      if (text.includes('[ticketNumbers]')) {
+        text = text.replaceAll('[ticketNumbers]', verbose)
+      } else {
+        text = `${text} (Bilhetes: ${verbose})`
+      }
       params.set('text', text)
       return `https://wa.me/${this.phoneNumber}?${params.toString()}`
     }
