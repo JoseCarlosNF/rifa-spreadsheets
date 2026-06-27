@@ -95,7 +95,7 @@ export default {
           
           <!-- Subtitle -->
           <div class="text-[10px] text-fire-400 uppercase tracking-widest font-extrabold text-center mb-3.5">
-            Premiação Oficial
+            Premiação
           </div>
           
           <!-- 3 Ganhadores Grid -->
@@ -123,25 +123,17 @@ export default {
         </div>
         
         <!-- Info & Price Row -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
-          <!-- Quick Rules -->
-          <div class="flex flex-col gap-2 text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-            <span class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-fire-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              Sorteio 100% Seguro
-            </span>
-            <span class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-fire-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              Baixa Pix Automática
-            </span>
-          </div>
+        <div class="flex flex-col items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
+          <!-- Sorteio 100% Seguro -->
+          <span class="flex items-center gap-2 text-[10px] text-gray-400 font-extrabold uppercase tracking-widest">
+            <svg class="w-4 h-4 text-fire-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            Sorteio 100% Seguro
+          </span>
 
           <!-- Price Badge -->
-          <div class="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl bg-gradient-to-r from-fire-600 to-fire-700 shadow-md shadow-fire-900/40 shrink-0">
+          <div class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-fire-600 via-fire-700 to-ember-700 shadow-md shadow-fire-900/40 w-full max-w-xs">
             <span class="text-fire-200 text-xs font-semibold">Valor do Bilhete</span>
             <span class="text-white text-xl font-black">R$\{{ rifa.config.ticketPrice }}</span>
           </div>
