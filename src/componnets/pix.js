@@ -2,7 +2,7 @@ export default {
   props: [
     'pixKey',
     'pixKeyOwnerName',
-    'pixBank',
+    'pixKeyOwnerBank',
     'totalPrice'
   ],
   data () {
@@ -51,6 +51,22 @@ export default {
           </div>
         </div>
 
+        <!-- Beneficiary & Value Details -->
+        <div class="bg-white/5 p-4 rounded-xl border border-white/5 space-y-2 text-xs">
+          <div class="flex justify-between items-center text-gray-400 border-b border-white/5 pb-2">
+            <span>Valor a pagar:</span>
+            <span class="font-black text-lg text-white">R$ {{ totalPrice }}</span>
+          </div>
+          <div class="flex justify-between items-center text-gray-400" :class="{ 'border-b border-white/5 pb-2': pixKeyOwnerBank }">
+            <span>Beneficiário:</span>
+            <span class="font-bold text-white text-right">{{ pixKeyOwnerName }}</span>
+          </div>
+          <div v-if="pixKeyOwnerBank" class="flex justify-between items-center text-gray-400">
+            <span>Banco de destino:</span>
+            <span class="font-bold text-white text-right">{{ pixKeyOwnerBank }}</span>
+          </div>
+        </div>
+
         <!-- Copyable Key Block -->
         <div class="flex flex-col gap-1.5">
           <span class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Chave Pix (Celular)</span>
@@ -70,22 +86,6 @@ export default {
               <span v-if="copied">✓ Copiado!</span>
               <span v-else>Copiar Chave</span>
             </button>
-          </div>
-        </div>
-
-        <!-- Beneficiary & Value Details -->
-        <div class="bg-white/5 p-4 rounded-xl border border-white/5 space-y-2 text-xs">
-          <div class="flex justify-between items-center text-gray-400 border-b border-white/5 pb-2">
-            <span>Valor a pagar:</span>
-            <span class="font-black text-lg text-white">R$ {{ totalPrice }}</span>
-          </div>
-          <div class="flex justify-between items-center text-gray-400" :class="{ 'border-b border-white/5 pb-2': pixBank }">
-            <span>Beneficiário:</span>
-            <span class="font-bold text-white text-right">{{ pixKeyOwnerName }}</span>
-          </div>
-          <div v-if="pixBank" class="flex justify-between items-center text-gray-400">
-            <span>Banco de destino:</span>
-            <span class="font-bold text-white text-right">{{ pixBank }}</span>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@ export default {
 
           <div class="flex gap-3">
             <span class="w-6 h-6 rounded-full bg-fire-500/10 text-fire-400 flex items-center justify-center font-bold text-xs shrink-0">4</span>
-            <p>Cole a chave copiada e confirme se o nome do beneficiário é <strong class="text-white">{{ pixKeyOwnerName }}</strong><span v-if="pixBank"> no banco <strong class="text-white">{{ pixBank }}</strong></span>.</p>
+            <p>Cole a chave copiada e confirme se o nome do beneficiário é <strong class="text-white">{{ pixKeyOwnerName }}</strong><span v-if="pixKeyOwnerBank"> no banco <strong class="text-white">{{ pixKeyOwnerBank }}</strong></span>.</p>
           </div>
 
           <div class="flex gap-3">

@@ -98,7 +98,7 @@ export default {
           <pix
             :pix-key="data.config.pixKey"
             :pix-key-owner-name="data.config.pixKeyOwnerName"
-            :pix-bank="data.config.pixKeyOwnerBank"
+            :pix-key-owner-bank="data.config.pixKeyOwnerBank"
             :total-price="totalPriceVerbose" />
         </div>
         <div v-else class="flex flex-col items-center gap-3 py-8">
