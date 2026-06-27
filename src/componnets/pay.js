@@ -1,4 +1,3 @@
-import pixBuilder from '../pixBuilder'
 import { verboseTicketNumbers } from '../utils'
 
 export default {
@@ -11,8 +10,6 @@ export default {
       phoneNumber: '',
       email: '',
       payData: null,
-      pixURL: null,
-      pixQrCode: null,
       registering: false
     }
   },
@@ -25,32 +22,36 @@ export default {
         phoneNumber: this.phoneNumber,
         email: this.requiredParams.includes('email') ? this.email : undefined
       }
-      if (this.data.config.payment.key === 'bc') {
-        const totalPrice = Number(ticketNumbers.length * this.data.config.ticketPrice)
-        const { pixURL, pixQrCode } = await pixBuilder(
-          this.data.config.pixKey,
-          this.data.config.pixKeyOwnerName,
-          this.data.config.pixKeyOwnerCity,
-          totalPrice,
-          this.pixMessage
-        )
-        this.pixURL = pixURL
-        this.pixQrCode = pixQrCode
-      }
       this.registering = true
-      const result = await this.$rifa.register(this.payData)
-      if (this.data.config.payment.key !== 'bc') {
-        this.pixURL = result.invoice.pixURL
-        this.pixQrCode = result.invoice.pixQrCode
+      try {
+        await this.$rifa.register(this.payData)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        this.registering = false
       }
-      this.registering = false
     },
     finish () {
       this.payData = null
-      this.pixURL = null
-      this.pixQrCode = null
       this.registering = false
       this.$emit('finished')
+    },
+    formatPhoneNumber (event) {
+      let input = event.target.value.replace(/\D/g, '')
+      const size = input.length
+      if (size === 0) {
+        input = ''
+      } else if (size < 3) {
+        input = `(${input}`
+      } else if (size < 7) {
+        input = `(${input.substring(0, 2)}) ${input.substring(2)}`
+      } else if (size < 11) {
+        input = `(${input.substring(0, 2)}) ${input.substring(2, 6)}-${input.substring(6)}`
+      } else {
+        input = `(${input.substring(0, 2)}) ${input.substring(2, 7)}-${input.substring(7, 11)}`
+      }
+      this.phoneNumber = input
+      event.target.value = input
     }
   },
   computed: {
@@ -93,29 +94,24 @@ export default {
         </div>
 
         <!-- PIX content -->
-        <div v-if="pixURL && pixQrCode">
+        <div v-if="!registering">
           <pix
-            :pix-url="pixURL"
-            :pix-qr-code="pixQrCode" />
+            :pix-key="data.config.pixKey"
+            :pix-key-owner-name="data.config.pixKeyOwnerName"
+            :total-price="totalPriceVerbose" />
         </div>
         <div v-else class="flex flex-col items-center gap-3 py-8">
           <div class="w-10 h-10 border-4 border-fire-500 border-t-transparent rounded-full animate-spin-slow"></div>
-          <p class="text-gray-400 text-sm">Gerando cobrança Pix...</p>
+          <p class="text-gray-400 text-sm">Registrando pedido...</p>
         </div>
 
         <!-- WhatsApp -->
         <whatsapp-notify
-          v-if="data.config.whatsapp && pixURL"
+          v-if="data.config.whatsapp && !registering"
           :phone-number="data.config.whatsapp"
           :ticket-numbers="payData.ticketNumbers"
           :message="data.config.whatsappMessage"
           class="mt-4" />
-
-        <!-- Registering indicator -->
-        <div v-if="registering" class="flex items-center gap-2 mt-4 text-sm text-gold-400">
-          <div class="w-4 h-4 border-2 border-gold-400 border-t-transparent rounded-full animate-spin-slow"></div>
-          Registrando pedido...
-        </div>
 
         <!-- Finish button -->
         <button
@@ -153,8 +149,9 @@ export default {
           <div>
             <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Telefone</label>
             <input
-              v-model="phoneNumber"
-              type="text"
+              :value="phoneNumber"
+              @input="formatPhoneNumber"
+              type="tel"
               required
               placeholder="(00) 00000-0000"
               class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white text-sm placeholder:text-gray-600 focus:outline-none focus:border-fire-500 focus:ring-1 focus:ring-fire-500/50 transition-all" />
