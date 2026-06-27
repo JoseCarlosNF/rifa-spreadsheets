@@ -34,15 +34,6 @@ export default {
   },
   template: `
     <div class="flex flex-col gap-6 text-left">
-      
-      <!-- ATTENTION ALERT BUBBLE (Low familiarity support) -->
-      <div class="bg-amber-500/15 border border-amber-500/20 rounded-2xl p-4 flex gap-3 animate-pulse-glow">
-        <span class="text-2xl select-none">⚠️</span>
-        <div class="text-xs text-amber-300/90 leading-relaxed">
-          <p class="font-black text-amber-400 text-sm mb-1">ATENÇÃO: Leia antes de pagar</p>
-          No aplicativo do seu banco, ao selecionar a área Pix, escolha o tipo de chave <strong class="text-white underline decoration-amber-400 decoration-2">CELULAR</strong> (Número de Telefone). Não escolha chave aleatória, e-mail ou CPF.
-        </div>
-      </div>
 
       <!-- Main Payment Card -->
       <div class="bg-dark-850 p-5 rounded-2xl border border-white/5 shadow-inner space-y-4">
@@ -62,7 +53,7 @@ export default {
 
         <!-- Copyable Key Block -->
         <div class="flex flex-col gap-1.5">
-          <span class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Chave Pix (Tipo: Celular)</span>
+          <span class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Chave Pix (Celular)</span>
           <div class="flex items-stretch rounded-xl overflow-hidden border border-white/10 bg-dark-900 shadow-md">
             <div class="flex-1 min-w-0 px-3 py-3 font-mono text-base font-bold text-white select-all truncate flex items-center justify-center bg-dark-950/40">
               {{ formattedPixKey }}
