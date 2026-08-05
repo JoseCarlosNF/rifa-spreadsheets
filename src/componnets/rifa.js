@@ -98,27 +98,18 @@ export default {
             Premiação
           </div>
           
-          <!-- 3 Ganhadores Grid -->
-          <div class="grid grid-cols-3 gap-2.5">
-            <div class="flex flex-col items-center p-3 rounded-xl bg-white/5 border border-white/5 text-center transition-all hover:bg-white/10">
-              <span class="text-2xl">🥇</span>
-              <span class="text-[10px] font-bold text-gray-300 mt-1.5">1º Prêmio</span>
-              <span class="text-xs font-black text-gold-400 mt-0.5">R$ 200</span>
-            </div>
-            <div class="flex flex-col items-center p-3 rounded-xl bg-white/5 border border-white/5 text-center transition-all hover:bg-white/10">
-              <span class="text-2xl">🥈</span>
-              <span class="text-[10px] font-bold text-gray-300 mt-1.5">2º Prêmio</span>
-              <span class="text-xs font-black text-gold-400 mt-0.5">R$ 200</span>
-            </div>
-            <div class="flex flex-col items-center p-3 rounded-xl bg-white/5 border border-white/5 text-center transition-all hover:bg-white/10">
-              <span class="text-2xl">🥉</span>
-              <span class="text-[10px] font-bold text-gray-300 mt-1.5">3º Prêmio</span>
-              <span class="text-xs font-black text-gold-400 mt-0.5">R$ 200</span>
-            </div>
+          <!-- Prêmio Único -->
+          <div class="relative flex flex-col items-center justify-center p-4 rounded-xl text-center overflow-hidden" style="background: linear-gradient(135deg, rgba(255,215,0,0.12) 0%, rgba(255,165,0,0.08) 50%, rgba(255,215,0,0.12) 100%); border: 1.5px solid rgba(255,200,0,0.45); box-shadow: 0 0 18px rgba(255,200,0,0.18);">
+            <!-- Brilho de fundo -->
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%, rgba(255,215,0,0.10) 0%, transparent 70%);pointer-events:none;"></div>
+            <span class="text-4xl mb-1" style="filter:drop-shadow(0 0 8px rgba(255,200,0,0.6));">🏆</span>
+            <span class="text-[11px] font-extrabold uppercase tracking-widest mt-1" style="color:rgba(255,215,0,0.75);">Prêmio</span>
+            <span class="font-black mt-1.5" style="font-size:1.65rem;line-height:1.1;background:linear-gradient(90deg,#FFD700,#FFA500,#FFD700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 1px 6px rgba(255,180,0,0.5));">R$ 600</span>
+            <span class="text-[10px] font-semibold mt-2" style="color:rgba(255,215,0,0.55);">para o bilhete sorteado</span>
           </div>
           
           <div class="text-center mt-4 text-xs text-gray-300 font-semibold leading-relaxed">
-            🏆 Serão 3 ganhadores no total, cada um levando R$ 200!
+            🎯 Um único ganhador leva <strong style="color:#FFD700;">R$ 600</strong> em dinheiro!
           </div>
         </div>
         
