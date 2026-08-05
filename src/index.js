@@ -6,7 +6,7 @@ import pay from './componnets/pay'
 import pix from './componnets/pix'
 import whatsappNotify from './componnets/whatsapp-notify'
 import payAction from './componnets/payAction'
-import './sass/main.scss'
+import './styles.css'
 
 const url = process.env.SCRIPT_GOOGLE_URL
 

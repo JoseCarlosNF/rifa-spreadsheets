@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* ── Theme tokens ── */
+@theme {
+  --color-fire-50: #FFF7ED;
+  --color-fire-100: #FFEDD5;
+  --color-fire-200: #FED7AA;
+  --color-fire-300: #FDBA74;
+  --color-fire-400: #FB923C;
+  --color-fire-500: #F97316;
+  --color-fire-600: #EA580C;
+  --color-fire-700: #C2410C;
+  --color-fire-800: #9A3412;
+  --color-fire-900: #7C2D12;
+
+  --color-ember-50: #FEF2F2;
+  --color-ember-100: #FEE2E2;
+  --color-ember-200: #FECACA;
+  --color-ember-300: #FCA5A5;
+  --color-ember-400: #F87171;
+  --color-ember-500: #EF4444;
+  --color-ember-600: #DC2626;
+  --color-ember-700: #B91C1C;
+  --color-ember-800: #991B1B;
+  --color-ember-900: #7F1D1D;
+
+  --color-grove-400: #4ADE80;
+  --color-grove-500: #22C55E;
+  --color-grove-600: #16A34A;
+  --color-grove-700: #15803D;
+
+  --color-gold-300: #FCD34D;
+  --color-gold-400: #FBBF24;
+  --color-gold-500: #F59E0B;
+  --color-gold-600: #D97706;
+
+  --color-dark-700: #374151;
+  --color-dark-800: #1F2937;
+  --color-dark-900: #111827;
+  --color-dark-950: #030712;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-spin-slow: spin 2s linear infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.7);
+  }
+}
+
+/* ── Base reset ── */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-dark-950 text-white font-sans antialiased;
+    min-height: 100dvh;
+  }
+
+  input,
+  button,
+  textarea {
+    @apply font-sans;
+  }
+}
+
+/* ── Ticket status classes (used by Vue components) ── */
+@layer components {
+  .ticket {
+    @apply relative flex flex-col items-center justify-center rounded-lg cursor-pointer select-none transition-all duration-200 ease-out border-2 border-transparent min-w-0 aspect-square p-1;
+  }
+
+  .ticket.available {
+    @apply bg-dark-800/80 text-gray-300 hover:bg-dark-700/90 hover:border-fire-500/30;
+  }
+
+  .ticket.not-paid {
+    @apply bg-gold-500/20 text-gold-400 cursor-not-allowed;
+  }
+
+  .ticket.paid {
+    @apply bg-grove-700/25 text-grove-400 cursor-not-allowed;
+  }
+
+  .ticket.checked {
+    @apply border-gold-400 bg-fire-600/30 text-white;
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.35);
+  }
+
+  .ticket>input {
+    @apply hidden;
+  }
+
+  /* Glassmorphism card util */
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  .glass-dark {
+    @apply bg-dark-900/70 backdrop-blur-xl border border-white/5 rounded-2xl;
+  }
+
+  /* Vignette effect to blend hero images seamlessly */
+  .hero-vignette {
+    background: radial-gradient(
+      ellipse at 50% 30%,
+      rgba(3, 7, 18, 0) 0%,
+      rgba(3, 7, 18, 0.25) 30%,
+      rgba(3, 7, 18, 0.8) 60%,
+      rgba(3, 7, 18, 1) 78%,
+      rgba(3, 7, 18, 1) 100%
+    );
+  }
+}
+
+/* ── Scrollbar styling ── */
+@layer base {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-fire-700 rounded-full;
+  }
+}

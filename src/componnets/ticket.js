@@ -1,15 +1,10 @@
 const EM_ABERTO = 'EM ABERTO'
 const DISPONIVEL = 'DISPONIVEL'
 const PAGO = 'PAGO'
-const TICKET_CLASS_MAP = {
-  [EM_ABERTO]: 'not-paid',
-  [PAGO]: 'paid',
-  [DISPONIVEL]: 'available'
-}
 const TICKET_STATUS_TITLE_MAP = {
-  [EM_ABERTO]: 'Aguardando',
+  [EM_ABERTO]: 'Reservado',
   [PAGO]: 'Pago',
-  [DISPONIVEL]: 'Disponível'
+  [DISPONIVEL]: ''
 }
 
 export default {
@@ -21,30 +16,32 @@ export default {
   ],
   computed: {
     checked: {
-      get () {
+      get() {
         return this.modelValue
       },
-      set (value) {
+      set(value) {
         this.$emit('update:modelValue', value)
       }
     },
-    status () {
+    status() {
       const status = this.ticketsStatus[this.ticketNumber]
       if (!status) {
         return DISPONIVEL
       }
       return status
     },
-    statusTitle () {
+    statusTitle() {
       return TICKET_STATUS_TITLE_MAP[this.status]
     },
-    statusClass () {
-      return TICKET_CLASS_MAP[this.status]
+    statusClass() {
+      if (this.status === EM_ABERTO) return 'not-paid'
+      if (this.status === PAGO) return 'paid'
+      return 'available'
     },
-    checkedClass () {
-      return this.checked.includes(this.value) ? 'checked' : 'non-checked'
+    checkedClass() {
+      return this.checked.includes(this.value) ? 'checked' : ''
     },
-    disabled () {
+    disabled() {
       return this.status !== DISPONIVEL
     }
   },
@@ -55,8 +52,10 @@ export default {
         :disabled="disabled"
         v-model="checked"
         :value="value" />
-      <div>Nº{{ ticketNumber }}</div>
-      <div><strong>{{ statusTitle }}</strong></div>
+      <span class="text-xxs leading-none">{{ ticketNumber }}</span>
+      <span
+        v-if="statusTitle"
+        class="text-xs font-medium opacity-70 leading-none mt-0.5">{{ statusTitle }}</span>
     </label>
   `
 }
